@@ -3,11 +3,7 @@
 set -euo pipefail
 
 ####################################################################################
-##### Specify software and dependencies that are required for this project     #####
-#####                                                                          #####
-##### Note:                                                                    #####
-##### The working directory is /home/brev/<PROJECT_FOLDER_NAME>. Execution of  #####
-##### this file happens at this level.                                         #####
+#####         A template to get a fully running Solana Dev Machine             #####
 ####################################################################################
 
 #### Yarn #####
@@ -44,6 +40,13 @@ curl https://sh.rustup.rs -sSf | sh -s -- -y
 #### SOLANA CLI #####
 (echo ""; echo "##### Solana CLI #####"; echo "";)
 sh -c "$(curl -sSfL https://release.solana.com/v1.8.6/install)"
-# NOTE: this had to be run manually. why? 
-PATH="/home/brev/.local/share/solana/install/active_release/bin:$PATH"
+echo "" >> ~/.zshrc
+echo "export PATH=/home/brev/.local/share/solana/install/active_release/bin:$PATH" >> ~/.zshrc
+source ~/.zshrc
+# PATH="/home/brev/.local/share/solana/install/active_release/bin:$PATH"
 
+##### Configure Solana CLI#####
+(echo ""; echo "##### Start Local Solana Cluster #####"; echo "";)
+solana config set --url localhost
+touch ~/workspace/solanakeygen.output
+solana-keygen new --no-bip39-passphrase --force > ~/workspace/solanakeygen.output
