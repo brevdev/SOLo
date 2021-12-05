@@ -19,8 +19,8 @@ sudo apt install ca-certificates
 curl -fsSL https://deb.nodesource.com/setup_14.x | sudo -E bash -
 sudo apt-get install -y nodejs
 
-install npm packages globally without sudo
-modified from https://stackoverflow.com/questions/18088372/how-to-npm-install-global-not-as-root
+# install npm packages globally without sudo
+# modified from https://stackoverflow.com/questions/18088372/how-to-npm-install-global-not-as-root
 mkdir "${HOME}/.npm-packages"
 printf "prefix=${HOME}/.npm-packages" >> $HOME/.npmrc
 cat <<EOF | tee -a ~/.bashrc | tee -a ~/.zshrc
